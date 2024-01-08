@@ -3,19 +3,19 @@ const chatModel = require("../Models/chatModel");
 
 // CREATE CHAT
 const createChat = async (req, res) => {
-    const [firstId, sencondId] = req.body;
+    const {firstId, secondId} = req.body;
     try {
         const chat = await chatModel.findOne({
             members: {
-                $all: [firstId, sencondId]
-            }
+                $all: [firstId, secondId]
+            },
         });
         
         // IF THERE IS EXIT 
         if (chat) return res.status(200).json(chat);
 
         const newChat = new chatModel({
-            members: [firstId, sencondId]
+            members: [firstId, secondId]
         });
 
         const response = await newChat.save();
@@ -52,7 +52,7 @@ const findChat = async (req, res) => {
     const {firstId, sencondId} = req.params;
 
     try {
-        const chat = await chatModel.find({
+        const chat = await chatModel.findOne({
             members: {
                 $all: [firstId, sencondId]
             }

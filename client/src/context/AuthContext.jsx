@@ -41,7 +41,7 @@ export const AuthContextProvider = ({ children }) => {
 
     setIsRegisterLoading(true);
     setRegisterError(null);
-    const response = await postRequest(`${baseUrl}users/register`, JSON.stringify(registerInfo))
+    const response = await postRequest(`${baseUrl}/api/users/register`, JSON.stringify(registerInfo))
     setIsRegisterLoading(false)
     if (response.error) {
       return setRegisterError(response)
@@ -59,7 +59,7 @@ export const AuthContextProvider = ({ children }) => {
 
     setIsLoginLoading(true);
     setLoginError(null);
-    const response = await postRequest(`${baseUrl}/users/login`, JSON.stringify(loginInfo))
+    const response = await postRequest(`${baseUrl}/api/users/login`, JSON.stringify(loginInfo))
     setIsLoginLoading(false)
     if (response.error) {
       return setLoginError(response)
